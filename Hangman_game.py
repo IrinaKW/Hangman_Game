@@ -53,13 +53,14 @@ class Hangman:
         else:
             self.num_lives-=1
             print(f'SORRY, {letter} is not in the word.')
-            print(f'You have {self.num_lives} lives left.')
+            print(f'\nYou have {self.num_lives} lives left.')
             if self.num_lives==0: 
                 print (f"You ran out of lives. The word was")
                 for i in range(5):
                     print ("."*(5-i), end="")
-                    time.sleep(1)
+                    time.sleep(2)
                 print (f"\n{word.upper()}")
+                print(hang_dict[0])
                 quit
             else: self.ask_letter(letter,list_letter)
             
@@ -79,11 +80,11 @@ if __name__ == '__main__':
     word_guessed='_'*len(word)
     hang_dict={
         5:[' ___', ' |', ' |','_|_'],
-        4:[' ___', ' |   O', ' |','_|_'],
-        3:[' ___', ' |   O', ' | /|','_|_'],
-        2:[' ___', ' |   O', ' | /|\\','_|_'],
-        1:[' ___', ' |   O', ' | /|\\','_|_/'],
-        0:[' ___', ' |   O', ' | /|\\','_|_/\\']}
-    play_game(word_list, word, word_guessed)
+        4:[' ___', ' |  O', ' |','_|_'],
+        3:[' ___', ' |  O', ' | /|','_|_'],
+        2:[' ___', ' |  O', ' | /|\\','_|_'],
+        1:[' ___', ' |  O', ' | /|\\','_|_/'],
+        0:[' ___', ' |  O', ' | /|\\','_|_/\\']}
+    play_game(word_list)
     
 # %%
