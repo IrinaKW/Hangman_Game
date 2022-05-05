@@ -31,12 +31,18 @@ class Hangman:
         else: print(f"\n You have {self.num_lives} lives left and {len(word)} letters to guess.")
 
         
-        letter=input('Please guess the letter').upper()
+        letter=input('Please guess the letter  ').upper()
         if len(letter)!=1:
             print ("\nPlease, enter just ***ONE*** character\n")
+            time.sleep(3)
             self.ask_letter(letter, list_letter)
         elif letter in list_letter:
             print (f"{letter} was already tried\n")
+            time.sleep(3)
+            self.ask_letter(letter, list_letter)
+        elif letter in ['0','1','2','3','4','5','6','7','8','9']:
+            print (f"{letter} is a number, please enter the letter\n")
+            time.sleep(3)
             self.ask_letter(letter, list_letter)
         else:
             list_letter.append(letter)
@@ -55,12 +61,12 @@ class Hangman:
             print(f'SORRY, {letter} is not in the word.')
             print(f'\nYou have {self.num_lives} lives left.')
             if self.num_lives==0: 
+                os.system("cls")
                 print (f"You ran out of lives. The word was")
-                for i in range(5):
-                    print ("."*(5-i), end="")
-                    time.sleep(2)
+                print ("."*(10), end="")
+                time.sleep(2)
                 print (f"\n{word.upper()}")
-                print(hang_dict[0])
+                print("\n".join(str(item) for item in hang_dict[0]))
                 quit
             else: self.ask_letter(letter,list_letter)
             
@@ -71,7 +77,10 @@ def play_game(word_list):
 
 
 if __name__ == '__main__':
-    print("What fruit can it be?")
+    os.system("cls")
+    print("=====================")
+    print("What Fruit Can It Be?")
+    print("=====================")
     time.sleep(3)
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
     list_letter=[]
@@ -84,7 +93,7 @@ if __name__ == '__main__':
         3:[' ___', ' |  O', ' | /|','_|_'],
         2:[' ___', ' |  O', ' | /|\\','_|_'],
         1:[' ___', ' |  O', ' | /|\\','_|_/'],
-        0:[' ___', ' |  O', ' | /|\\','_|_/\\']}
+        0:[' ___', ' |  O', ' | /|\\','_|_/ \\']}
     play_game(word_list)
     
 # %%
